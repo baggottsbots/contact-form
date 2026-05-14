@@ -264,31 +264,41 @@
   
   <!-- 
     ═══════════════════════════════════════════════════════════════
-    FORM SUBMISSION BEHAVIOR:
+    FORM SUBMISSION BEHAVIOR (DOMAIN-AGNOSTIC):
     ═══════════════════════════════════════════════════════════════
     
     When someone submits this form:
     1. Form collects: First Name, Last Name, Email, Phone
-    2. JavaScript replaces template variables with actual values
-    3. URL parameters are properly encoded for safe transmission
-    4. User is redirected to destination page with all data
+    2. JavaScript detects the current domain dynamically
+    3. Builds redirect URL to /thank-you/ on the same domain
+    4. URL parameters are properly encoded for safe transmission
+    5. User is redirected to thank-you page with all data
     
-    REDIRECT URL STRUCTURE:
-    https://paymegpt.com/p/KkzuGcJW7Z?agent=12301167&first_name=VALUE&last_name=VALUE&email=VALUE&phone=VALUE
+    DOMAIN-AGNOSTIC BEHAVIOR:
+    - Works on any domain (baggottsbots.github.io, custom domains, localhost, etc.)
+    - Automatically uses the current protocol (http:// or https://)
+    - Automatically uses the current hostname
+    - Always redirects to /thank-you/ path on the same domain
+    
+    REDIRECT URL EXAMPLES:
+    - https://baggottsbots.github.io/thank-you/?agent=12301167&first_name=John&last_name=Doe&email=john@example.com&phone=555-123-4567
+    - https://customdomain.com/thank-you/?agent=12301167&first_name=John&last_name=Doe&email=john@example.com&phone=555-123-4567
+    - http://localhost:3000/thank-you/?agent=12301167&first_name=John&last_name=Doe&email=john@example.com&phone=555-123-4567
     
     AGENT PARAMETER:
     - agent=12301167 identifies the widget/agent for contact attribution
     - This ensures contacts are properly associated with the correct agent
     
-    TEMPLATE VARIABLES (URL-ENCODED):
-    - %7B%7Bfirst_name%7D%7D → Replaced with user's first name
-    - %7B%7Blast_name%7D%7D → Replaced with user's last name
-    - %7B%7Bemail%7D%7D → Replaced with user's email address
-    - %7B%7Bphone%7D%7D → Replaced with user's phone number
+    URL PARAMETERS:
+    - first_name: User's first name (URL-encoded)
+    - last_name: User's last name (URL-encoded)
+    - email: User's email address (URL-encoded)
+    - phone: User's phone number (URL-encoded)
+    - agent: Widget/Agent ID for contact attribution
     
     URL ENCODING:
-    - All form values are URL-encoded to handle special characters safely
-    - Spaces become %20, @ becomes %40, etc.
+    - All form values are automatically URL-encoded by URLSearchParams
+    - Spaces become +, special characters become %XX format
     - Ensures data integrity during transmission
     ═══════════════════════════════════════════════════════════════
   -->
