@@ -1,9 +1,20 @@
 // ═══════════════════════════════════════════════════════════════
-    // FORM SUBMISSION WITH DYNAMIC PARAMETER REDIRECT
+    // FORM SUBMISSION WITH DOMAIN-AGNOSTIC REDIRECT
     // ═══════════════════════════════════════════════════════════════
     
-    // Redirect URL with template variables for dynamic form data
-    const REDIRECT_URL = 'https://paymegpt.com/p/KkzuGcJW7Z?agent=12301167&first_name=%7B%7Bfirst_name%7D%7D&last_name=%7B%7Blast_name%7D%7D&email=%7B%7Bemail%7D%7D&phone=%7B%7Bphone%7D%7D';
+    // Function to build domain-agnostic redirect URL
+    function getRedirectUrl() {
+      // Get the current domain and protocol
+      const protocol = window.location.protocol;
+      const host = window.location.host;
+      
+      // Build the thank-you page path (domain-agnostic)
+      const thankYouPath = '/thank-you/';
+      const baseUrl = protocol + '//' + host;
+      const redirectUrl = baseUrl + thankYouPath;
+      
+      return redirectUrl;
+    }
     
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -22,17 +33,25 @@
       // URL PARAMETER ENCODING
       // ───────────────────────────────────────────────────────────────
       
-      // Replace template variables with actual form values
-      let redirectUrl = REDIRECT_URL
-        .replace('%7B%7Bfirst_name%7D%7D', encodeURIComponent(firstName))
-        .replace('%7B%7Blast_name%7D%7D', encodeURIComponent(lastName))
-        .replace('%7B%7Bemail%7D%7D', encodeURIComponent(email))
-        .replace('%7B%7Bphone%7D%7D', encodeURIComponent(phone));
+      // Build the redirect URL dynamically based on current domain
+      const baseRedirectUrl = getRedirectUrl();
+      
+      // Create URLSearchParams for clean parameter encoding
+      const params = new URLSearchParams({
+        agent: '12301167',
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        phone: phone
+      });
+      
+      // Construct final redirect URL with parameters
+      const redirectUrl = baseRedirectUrl + '?' + params.toString();
       
       // ───────────────────────────────────────────────────────────────
       // REDIRECT TO DESTINATION PAGE
       // ───────────────────────────────────────────────────────────────
       
-      // Redirect to the destination page with all form data as URL parameters
+      // Redirect to the thank-you page with all form data as URL parameters
       window.location.href = redirectUrl;
     });
