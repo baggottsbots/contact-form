@@ -1,20 +1,6 @@
 // ═══════════════════════════════════════════════════════════════
-    // FORM SUBMISSION WITH DOMAIN-AGNOSTIC REDIRECT
+    // FORM SUBMISSION WITH FIXED REDIRECT URL
     // ═══════════════════════════════════════════════════════════════
-    
-    // Function to build domain-agnostic redirect URL
-    function getRedirectUrl() {
-      // Get the current domain and protocol
-      const protocol = window.location.protocol;
-      const host = window.location.host;
-      
-      // Build the thank-you page path (domain-agnostic)
-      const thankYouPath = '/thank-you/';
-      const baseUrl = protocol + '//' + host;
-      const redirectUrl = baseUrl + thankYouPath;
-      
-      return redirectUrl;
-    }
     
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -33,8 +19,8 @@
       // URL PARAMETER ENCODING
       // ───────────────────────────────────────────────────────────────
       
-      // Build the redirect URL dynamically based on current domain
-      const baseRedirectUrl = getRedirectUrl();
+      // Fixed redirect URL to the thank-you page
+      const baseRedirectUrl = 'https://baggottsbots.github.io/contact-form/thank-you/';
       
       // Create URLSearchParams for clean parameter encoding
       const params = new URLSearchParams({
