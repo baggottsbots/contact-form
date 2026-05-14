@@ -264,26 +264,18 @@
   
   <!-- 
     ═══════════════════════════════════════════════════════════════
-    FORM SUBMISSION BEHAVIOR (DOMAIN-AGNOSTIC):
+    FORM SUBMISSION BEHAVIOR (FIXED REDIRECT):
     ═══════════════════════════════════════════════════════════════
     
     When someone submits this form:
     1. Form collects: First Name, Last Name, Email, Phone
-    2. JavaScript detects the current domain dynamically
-    3. Builds redirect URL to /thank-you/ on the same domain
+    2. JavaScript builds redirect URL to fixed thank-you page
+    3. Redirect URL: https://baggottsbots.github.io/contact-form/thank-you/
     4. URL parameters are properly encoded for safe transmission
     5. User is redirected to thank-you page with all data
     
-    DOMAIN-AGNOSTIC BEHAVIOR:
-    - Works on any domain (baggottsbots.github.io, custom domains, localhost, etc.)
-    - Automatically uses the current protocol (http:// or https://)
-    - Automatically uses the current hostname
-    - Always redirects to /thank-you/ path on the same domain
-    
-    REDIRECT URL EXAMPLES:
-    - https://baggottsbots.github.io/thank-you/?agent=12301167&first_name=John&last_name=Doe&email=john@example.com&phone=555-123-4567
-    - https://customdomain.com/thank-you/?agent=12301167&first_name=John&last_name=Doe&email=john@example.com&phone=555-123-4567
-    - http://localhost:3000/thank-you/?agent=12301167&first_name=John&last_name=Doe&email=john@example.com&phone=555-123-4567
+    REDIRECT URL EXAMPLE:
+    https://baggottsbots.github.io/contact-form/thank-you/?agent=12301167&first_name=John&last_name=Doe&email=john@example.com&phone=555-123-4567
     
     AGENT PARAMETER:
     - agent=12301167 identifies the widget/agent for contact attribution
