@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <!-- BASE:START (managed by Coding Agent — do not edit) -->
@@ -204,96 +205,28 @@
   <div class="container">
     <h1>Get In Touch</h1>
     <p class="subtitle">We'd love to hear from you. Fill out the form below!</p>
-    
     <form id="contactForm">
       <div class="form-group">
         <label for="firstName">First Name</label>
-        <input 
-          type="text" 
-          id="firstName" 
-          name="firstName" 
-          placeholder="John" 
-          required
-          data-testid="input-firstName"
-        >
+        <input type="text" id="firstName" name="firstName" placeholder="John" required data-testid="input-firstName">
       </div>
-      
       <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input 
-          type="text" 
-          id="lastName" 
-          name="lastName" 
-          placeholder="Doe" 
-          required
-          data-testid="input-lastName"
-        >
+        <input type="text" id="lastName" name="lastName" placeholder="Doe" required data-testid="input-lastName">
       </div>
-      
       <div class="form-group">
         <label for="email">Email Address</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          placeholder="john@example.com" 
-          required
-          data-testid="input-email"
-        >
+        <input type="email" id="email" name="email" placeholder="john@example.com" required data-testid="input-email">
       </div>
-      
       <div class="form-group">
         <label for="phone">Phone Number</label>
-        <input 
-          type="tel" 
-          id="phone" 
-          name="phone" 
-          placeholder="555-123-4567" 
-          required
-          data-testid="input-phone"
-        >
+        <input type="tel" id="phone" name="phone" placeholder="555-123-4567" required data-testid="input-phone">
       </div>
-      
       <button type="submit" data-testid="button-submit">Submit Form</button>
-      
       <p class="privacy-note">We respect your privacy and will never share your information.</p>
     </form>
   </div>
-
   
-  
-  <!-- 
-    ═══════════════════════════════════════════════════════════════
-    FORM SUBMISSION BEHAVIOR (FIXED REDIRECT):
-    ═══════════════════════════════════════════════════════════════
-    
-    When someone submits this form:
-    1. Form collects: First Name, Last Name, Email, Phone
-    2. JavaScript builds redirect URL to fixed thank-you page
-    3. Redirect URL: https://baggottsbots.github.io/contact-form/thank-you/
-    4. URL parameters are properly encoded for safe transmission
-    5. User is redirected to thank-you page with all data
-    
-    REDIRECT URL EXAMPLE:
-    https://baggottsbots.github.io/contact-form/thank-you/?agent=12301167&first_name=John&last_name=Doe&email=john@example.com&phone=555-123-4567
-    
-    AGENT PARAMETER:
-    - agent=12301167 identifies the widget/agent for contact attribution
-    - This ensures contacts are properly associated with the correct agent
-    
-    URL PARAMETERS:
-    - first_name: User's first name (URL-encoded)
-    - last_name: User's last name (URL-encoded)
-    - email: User's email address (URL-encoded)
-    - phone: User's phone number (URL-encoded)
-    - agent: Widget/Agent ID for contact attribution
-    
-    URL ENCODING:
-    - All form values are automatically URL-encoded by URLSearchParams
-    - Spaces become +, special characters become %XX format
-    - Ensures data integrity during transmission
-    ═══════════════════════════════════════════════════════════════
-  -->
   <script src="script.js"></script>
 </body>
 </html>
